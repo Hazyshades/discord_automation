@@ -1,33 +1,42 @@
 import time
-
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
-
-
-# options = webdriver.ChromeOptions()
 from selenium import webdriver
+import helpers
 
-options = webdriver.ChromeOptions()
-options.add_argument("user-agent=Hello") #Path to your chrome profile
+def typegm():
+    options = webdriver.ChromeOptions()
 
-w = webdriver.Chrome(executable_path="C:\\Users\\chromedriver.exe", chrome_options=options)
+    w = webdriver.Chrome(executable_path="C:\\Users\\chromedriver.exe", chrome_options=options)
 
-w.get("https://discord.com/channels/@me")
+    w.get("https://discord.com/channels/@me")
 
-email_input = w.find_element_by_name("email")
-email_input.clear()
-email_input.send_keys("test@mail.com")
+    email_input = w.find_element_by_name("email")
+    email_input.clear()
+    email_input.send_keys("test@test.com")
 
-pass_input = w.find_element_by_name("password")
-pass_input.send_keys("test")
-pass_input.send_keys(Keys.ENTER)
-time.sleep(5)
+    pass_input = w.find_element_by_name("password")
+    pass_input.send_keys("test")
+    pass_input.send_keys(Keys.ENTER)
+    time.sleep(5)
 
-w.find_element_by_css_selector('#app-mount > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > nav > ul > div.scroller-3X7KbA.none-2-_0dP.scrollerBase-_bVAAt > div:nth-child(3) > div:nth-child(2) > div:nth-child(2) > div > div > svg > foreignObject > div').click()
-time.sleep(5)
-w.find_element_by_css_selector('#channels > ul > li:nth-child(19) > div > div.content-1gYQeQ > a > div.name-28HaxV.overflow-1wOqNV > div').click()
-time.sleep(5)
-pass_input2= w.find_element_by_css_selector('#app-mount > div.app-3xd6d0 > div > div.layers-OrUESM.layers-1YQhyW > div > div.container-1eFtFS > div > div > div.chat-2ZfjoI > div > main > form > div > div > div > div.scrollableContainer-15eg7h > div > div.textArea-2CLwUE.textAreaSlate-9-y-k2.slateContainer-3x9zil > div > div.markup-eYLPri.editor-H2NA06.slateTextArea-27tjG0.fontSize16Padding-XoMpjI > div')
-pass_input2.send_keys("gn")
-pass_input2.send_keys(Keys.ENTER)
+    print('Находим 1-ую по счету папку с нужным сервером')
+    w.find_elements_by_class_name('folderIconWrapper-1oRIZr')[0].click()
+    time.sleep(5)
+    print('Заходим на сервер')
+
+    w.find_element_by_xpath("//div[@data-list-item-id='guildsnav___933846070344167464']").click()
+    w.find_element_by_xpath("//div[@data-list-item-id='guildsnav___933846070344167464']").click()
+
+    time.sleep(5)
+    print('Заходим в чат gm-gn')
+    w.find_element_by_xpath("//*[contains(text(), 'gm-gn')]").click()
+    time.sleep(5)
+    print('Пишем сообщение')
+
+    w.find_element_by_xpath("//div[@class='markup-eYLPri editor-H2NA06 slateTextArea-27tjG0 fontSize16Padding-XoMpjI']").send_keys(helpers.gm + Keys.ENTER)
+
+    time.sleep(5)
+
+
+if __name__ == '__main__':
+    typegm()
