@@ -1,7 +1,9 @@
+import datetime
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 import helpers
+from datetime import datetime
 
 def typegm():
     options = webdriver.ChromeOptions()
@@ -25,15 +27,22 @@ def typegm():
     print('Заходим на сервер')
 
     w.find_element_by_xpath("//div[@data-list-item-id='guildsnav___933846070344167464']").click()
-    w.find_element_by_xpath("//div[@data-list-item-id='guildsnav___933846070344167464']").click()
 
-    time.sleep(5)
+    time.sleep(15)
     print('Заходим в чат gm-gn')
     w.find_element_by_xpath("//*[contains(text(), 'gm-gn')]").click()
     time.sleep(5)
     print('Пишем сообщение')
+    current_time = datetime.now().strftime("%H:%M:%S")
 
-    w.find_element_by_xpath("//div[@class='markup-eYLPri editor-H2NA06 slateTextArea-27tjG0 fontSize16Padding-XoMpjI']").send_keys(helpers.gm + Keys.ENTER)
+    if current_time > helpers.deadline_gm:
+        w.find_element_by_xpath(
+            "//div[@class='markup-eYLPri editor-H2NA06 slateTextArea-27tjG0 fontSize16Padding-XoMpjI']").send_keys(
+            helpers.gm + Keys.ENTER)
+    else:
+        w.find_element_by_xpath(
+            "//div[@class='markup-eYLPri editor-H2NA06 slateTextArea-27tjG0 fontSize16Padding-XoMpjI']").send_keys(
+            helpers.gn + Keys.ENTER)
 
     time.sleep(5)
 

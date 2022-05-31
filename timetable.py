@@ -1,19 +1,11 @@
 import schedule
-
-import timetable
 import requests
-
 from test import typegm
 from timetable import *
-import timetable
-
-
-
-
 
 
 def main():
-    schedule.every(24).hour.do(typegm)
+    schedule.every(14).hours.do(typegm)
 
     while True:
         schedule.run_pending()
