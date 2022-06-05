@@ -1,5 +1,5 @@
 gm = 'gm'
 gn = 'gn'
 kyveFaucet = '!faucet send 123'
-deadline_gm = '07:59:23'
+deadline_gm = '11:38'
 deadline_gn = '22:59:23'

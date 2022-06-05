@@ -33,8 +33,8 @@ def typegm():
     w.find_element_by_xpath("//*[contains(text(), 'gm-gn')]").click()
     time.sleep(5)
     print('Пишем сообщение')
-    current_time = datetime.now().strftime("%H:%M:%S")
-
+    current_time = datetime.now().strftime("%I:%M")
+    print(current_time)
     if current_time > helpers.deadline_gm:
         w.find_element_by_xpath(
             "//div[@class='markup-eYLPri editor-H2NA06 slateTextArea-27tjG0 fontSize16Padding-XoMpjI']").send_keys(
